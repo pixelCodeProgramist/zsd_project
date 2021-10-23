@@ -1,6 +1,7 @@
 package program.Sorters.RadixSorter;
 
 import program.Main;
+import program.Sorters.Comments;
 import program.Sorters.Sorter;
 
 import java.util.ArrayList;
@@ -18,7 +19,7 @@ public class RadixSorter implements Sorter {
     }
 
     @Override
-    public void sort() {
+    public void sort(Comments comments) {
         long time = System.currentTimeMillis();
         int max = array.get(0);
         int min = array.get(0);
@@ -29,42 +30,47 @@ public class RadixSorter implements Sorter {
             if (array.get(i) < min) min = array.get(i);
         }
         List<Integer> tempArray = new ArrayList<>(array);
-        if (negative.size() > 0 && positive.size() > 0) sortPositiveAndNegativeNumbers(max, min , tempArray);
-        else if (positive.size() == 0) sortNegativeNumbers(min, tempArray);
-        else sortPositiveNumbers(max, tempArray);
+        if (negative.size() > 0 && positive.size() > 0) sortPositiveAndNegativeNumbers(max, min, tempArray, comments);
+        else if (positive.size() == 0) sortNegativeNumbers(min, tempArray, comments);
+        else sortPositiveNumbers(max, tempArray, comments);
         System.out.println("Sort time = " + (System.currentTimeMillis() - time) + " ms");
-        System.out.println(array);
+        if (comments.equals(Comments.withComments))
+            System.out.println(array);
     }
 
-    private void sortPositiveAndNegativeNumbers(int max, int min, List<Integer> tempArray) {
+    private void sortPositiveAndNegativeNumbers(int max, int min, List<Integer> tempArray, Comments comments) {
         max = Math.max(max, Math.abs(min));
         int i = 0;
         for (int power = 1; max / power > 0; power *= 10) {
             countingPositiveNumberSort(positive, tempArray, power);
-            System.out.println("Iteration " + i + " of radix sort for positive array " + positive);
+            if (comments.equals(Comments.withComments))
+                System.out.println("Iteration " + i + " of radix sort for positive array " + positive);
             countingNegativeNumberSort(negative, tempArray, power);
-            System.out.println("Iteration " + i++ + " of radix sort for negative array " + negative);
+            if (comments.equals(Comments.withComments))
+                System.out.println("Iteration " + i++ + " of radix sort for negative array " + negative);
         }
         array.clear();
         array.addAll(negative);
         array.addAll(positive);
     }
 
-    private void sortNegativeNumbers(int min, List<Integer> tempArray) {
+    private void sortNegativeNumbers(int min, List<Integer> tempArray, Comments comments) {
         int i = 0;
         for (int power = 1; min / power > 0; power *= 10) {
             countingNegativeNumberSort(negative, tempArray, power);
-            System.out.println("Iteration " + i + " of radix sort for negative array " + negative);
+            if (comments.equals(Comments.withComments))
+                System.out.println("Iteration " + i + " of radix sort for negative array " + negative);
         }
         array.clear();
         array.addAll(negative);
     }
 
-    private void sortPositiveNumbers(int max, List<Integer> tempArray) {
+    private void sortPositiveNumbers(int max, List<Integer> tempArray, Comments comments) {
         int i = 0;
         for (int power = 1; max / power > 0; power *= 10) {
             countingPositiveNumberSort(positive, tempArray, power);
-            System.out.println("Iteration " + i++ + " of radix sort for positive array " + positive);
+            if (comments.equals(Comments.withComments))
+                System.out.println("Iteration " + i++ + " of radix sort for positive array " + positive);
         }
         array.clear();
         array.addAll(positive);

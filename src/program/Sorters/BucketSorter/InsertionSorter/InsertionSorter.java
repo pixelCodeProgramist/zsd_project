@@ -1,6 +1,7 @@
 package program.Sorters.BucketSorter.InsertionSorter;
 
 import program.Sorters.BucketSorter.Bucket;
+import program.Sorters.Comments;
 import program.Sorters.Sorter;
 
 import java.util.List;
@@ -16,22 +17,24 @@ public class InsertionSorter implements Sorter {
     }
 
     @Override
-    public void sort() {
+    public void sort(Comments comments) {
         int n = bucketNumbersList.size();
         int current;
         int otherIndex;
-        System.out.println("Before sort bucket " +bucket);
-        System.out.println("INSERTION SORT");
-        for(int i = 1;i<n;i++){
+        if (comments.equals(Comments.withComments)) {
+            System.out.println("Before sort bucket " + bucket);
+            System.out.println("INSERTION SORT");
+        }
+        for (int i = 1; i < n; i++) {
             current = bucketNumbersList.get(i);
             otherIndex = i;
-            while (otherIndex>0&&current < bucketNumbersList.get(otherIndex-1)){
-                bucketNumbersList.set(otherIndex,bucketNumbersList.get(otherIndex-1));
+            while (otherIndex > 0 && current < bucketNumbersList.get(otherIndex - 1)) {
+                bucketNumbersList.set(otherIndex, bucketNumbersList.get(otherIndex - 1));
                 otherIndex--;
             }
-            bucketNumbersList.set(otherIndex,current);
-
-            System.out.println("iteration: "+i + ":  list: " +bucketNumbersList);
+            bucketNumbersList.set(otherIndex, current);
+            if (comments.equals(Comments.withComments))
+                System.out.println("iteration: " + i + ":  list: " + bucketNumbersList);
         }
     }
 }

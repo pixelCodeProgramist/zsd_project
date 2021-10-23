@@ -7,7 +7,7 @@ public class Bucket {
     private List<Integer> list;
     private double rangeFrom;
     private double rangeTo;
-    
+
 
     public Bucket(double rangeFrom, double rangeTo) {
         this.list = new ArrayList<>();
@@ -30,8 +30,8 @@ public class Bucket {
     @Override
     public String toString() {
         return "Bucket{" +
-                "from=" + rangeFrom+", "+
-                "to=" + rangeTo +", "+
+                "from=" + rangeFrom + ", " +
+                "to=" + rangeTo + ", " +
                 "list=" + list +
                 '}';
     }

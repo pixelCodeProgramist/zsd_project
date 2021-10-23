@@ -1,6 +1,7 @@
 package program.Sorters.CountingSorter;
 
 
+import program.Sorters.Comments;
 import program.Sorters.Sorter;
 
 import java.util.ArrayList;
@@ -12,7 +13,7 @@ import java.util.stream.Collectors;
 public class CoutingSorter implements Sorter {
     private List<Integer> unsortedList;
     private List<Integer> list;
-    private Map<Integer,Integer> numberOfNumbers;
+    private Map<Integer, Integer> numberOfNumbers;
     private int min;
     private int max;
 
@@ -30,29 +31,29 @@ public class CoutingSorter implements Sorter {
         }
     }
 
-    private void updateMapNumberOfNumbers(){
-        for(int i: list){
+    private void updateMapNumberOfNumbers() {
+        for (int i : list) {
             Integer currentNumber = this.numberOfNumbers.get(i);
             currentNumber++;
-            this.numberOfNumbers.put(i,currentNumber);
+            this.numberOfNumbers.put(i, currentNumber);
         }
     }
 
-    private void fillMapNumberOfNumbers(){
-        for(int i=min;i<=max;i++) this.numberOfNumbers.put(i,0);
+    private void fillMapNumberOfNumbers() {
+        for (int i = min; i <= max; i++) this.numberOfNumbers.put(i, 0);
     }
 
-    private void buildSortedList(){
+    private void buildSortedList() {
         list.clear();
         for (Map.Entry<Integer, Integer> entry : numberOfNumbers.entrySet()) {
-            for(int i=0;i<entry.getValue();i++){
+            for (int i = 0; i < entry.getValue(); i++) {
                 list.add(entry.getKey());
             }
         }
     }
 
     @Override
-    public void sort() {
+    public void sort(Comments comments) {
         long startTime = System.nanoTime();
 
         this.findMinAndMaxNumber();
@@ -62,19 +63,22 @@ public class CoutingSorter implements Sorter {
 
         long elapsedTime = System.nanoTime() - startTime;
 
-        System.out.println("COUTING SORT");
-
-        System.out.println("unsorted list: " + unsortedList);
-        System.out.println("minimal element: "+min+" maximal element: "+max);
-        System.out.println("number = numberOfPerformance: "+
-                numberOfNumbers.entrySet().stream()
-                .map(e->e.getKey()+" = "+e.getValue())
-                .collect(Collectors.toList())
-        );
-        System.out.println("Sorted list: "+ list);
+        System.out.println("COUNTING SORT");
+        if (comments.equals(Comments.withComments))
+            System.out.println("unsorted list: " + unsortedList);
+        if (comments.equals(Comments.withComments)) {
+            System.out.println("minimal element: " + min + " maximal element: " + max);
+            System.out.println("number = numberOfPerformance: " +
+                    numberOfNumbers.entrySet().stream()
+                            .map(e -> e.getKey() + " = " + e.getValue())
+                            .collect(Collectors.toList())
+            );
+        }
+        if (comments.equals(Comments.withComments))
+            System.out.println("Sorted list: " + list);
 
         System.out.println("Total execution time in milis: "
-                + elapsedTime/1000000);
+                + elapsedTime / 1000000);
 
     }
 }

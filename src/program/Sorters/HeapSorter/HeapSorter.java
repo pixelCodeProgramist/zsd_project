@@ -1,5 +1,6 @@
 package program.Sorters.HeapSorter;
 
+import program.Sorters.Comments;
 import program.Sorters.Sorter;
 
 import java.util.ArrayList;
@@ -15,26 +16,29 @@ public class HeapSorter implements Sorter {
     }
 
     @Override
-    public void sort() {
+    public void sort(Comments comments) {
         System.out.println("HEAP SORT");
-        System.out.println("unsorted list: " + list);
+        if (comments.equals(Comments.withComments))
+            System.out.println("unsorted list: " + list);
         long startTime = System.nanoTime();
         int n = list.size();
-        for(int i = n / 2 - 1; i >= 0; i--){
+        for (int i = n / 2 - 1; i >= 0; i--) {
             validateMaxHeap(n, i);
         }
-        for(int i = n - 1; i > 0; i--){
+        for (int i = n - 1; i > 0; i--) {
             swap(0, i);
             --n;
             validateMaxHeap(n, 0);
         }
         long elapsedTime = System.nanoTime() - startTime;
-        for(int i=0;i<historyChangeList.size();i++){
-            System.out.println("ITERACJA "+(i+1)+": "+historyChangeList.get(i));
-        }
-        System.out.println("sorted list: " + list);
+        if (comments.equals(Comments.withComments))
+            for (int i = 0; i < historyChangeList.size(); i++) {
+                System.out.println("ITERACJA " + (i + 1) + ": " + historyChangeList.get(i));
+            }
+        if (comments.equals(Comments.withComments))
+            System.out.println("sorted list: " + list);
         System.out.println("Total execution time in milis: "
-                + elapsedTime/1000000);
+                + elapsedTime / 1000000);
 
 
     }
@@ -44,13 +48,13 @@ public class HeapSorter implements Sorter {
         int leftChild = parentIndex * 2 + 1;
         int rightChild = parentIndex * 2 + 2;
 
-        if(leftChild < heapSize && list.get(leftChild) > list.get(maxIndex)){
+        if (leftChild < heapSize && list.get(leftChild) > list.get(maxIndex)) {
             maxIndex = leftChild;
         }
-        if(rightChild < heapSize && list.get(rightChild) > list.get(maxIndex)){
+        if (rightChild < heapSize && list.get(rightChild) > list.get(maxIndex)) {
             maxIndex = rightChild;
         }
-        if(maxIndex != parentIndex){
+        if (maxIndex != parentIndex) {
             swap(maxIndex, parentIndex);
             historyChangeList.add(new ArrayList<>(list));
             validateMaxHeap(heapSize, maxIndex);

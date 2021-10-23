@@ -1,6 +1,7 @@
 package program.Sorters.BucketSorter;
 
 import program.Sorters.BucketSorter.InsertionSorter.InsertionSorter;
+import program.Sorters.Comments;
 import program.Sorters.Sorter;
 
 import java.util.ArrayList;
@@ -27,29 +28,29 @@ public class BucketSorter implements Sorter {
         }
     }
 
-    private double findDistance(double min,double max){
-        if(min*max<0) {
+    private double findDistance(double min, double max) {
+        if (min * max < 0) {
             double fromLocal = Math.abs(min);
             double toLocal = Math.abs(max);
-            return fromLocal+toLocal;
+            return fromLocal + toLocal;
         }
         double fromLocal = Math.abs(min);
         double toLocal = Math.abs(max);
-        return Math.abs(fromLocal-toLocal);
+        return Math.abs(fromLocal - toLocal);
     }
 
     private void fillBuckets() {
         int n = list.size();
         findMinAndMaxNumber();
-        double distance = findDistance(min,max)/n;
+        double distance = findDistance(min, max) / n;
         for (int i = 0; i < n; i++) {
-            double from = min+i*distance;
-            double to = from+distance;
+            double from = min + i * distance;
+            double to = from + distance;
             Bucket bucket = new Bucket(from, to);
-            for(int j=0;j<list.size();j++) {
+            for (int j = 0; j < list.size(); j++) {
                 if (list.get(j) >= from && list.get(j) < to)
                     bucket.add(list.get(j));
-                if((i+1)==n&&list.get(j) == max){
+                if ((i + 1) == n && list.get(j) == max) {
                     bucket.add(max);
                 }
             }
@@ -57,29 +58,33 @@ public class BucketSorter implements Sorter {
         }
     }
 
-    private void sortInBucket(){
-        for(Bucket b: buckets){
-            if(b.size()==0) continue;
+    private void sortInBucket(Comments comments) {
+        for (Bucket b : buckets) {
+            if (b.size() == 0) continue;
             Sorter sorter = new InsertionSorter(b);
-            sorter.sort();
+            sorter.sort(comments);
         }
     }
+
     @Override
-    public void sort() {
+    public void sort(Comments comments) {
         System.out.println("BUCKET SORTER");
-        System.out.println("unsorted list: " + list);
+        if (comments.equals(Comments.withComments))
+            System.out.println("unsorted list: " + list);
         long startTime = System.nanoTime();
         fillBuckets();
-        sortInBucket();
-        System.out.println(buckets);
+        sortInBucket(comments);
+        if (comments.equals(Comments.withComments))
+            System.out.println(buckets);
         list.clear();
-        for(Bucket b: buckets){
-            if(b.size()==0) continue;
-            for(int i: b.getList()) list.add(i);
+        for (Bucket b : buckets) {
+            if (b.size() == 0) continue;
+            for (int i : b.getList()) list.add(i);
         }
         long elapsedTime = System.nanoTime() - startTime;
-        System.out.println("sorted list: " + list);
+        if (comments.equals(Comments.withComments))
+            System.out.println("sorted list: " + list);
         System.out.println("Total execution time in milis: "
-                + elapsedTime/1000000);
+                + elapsedTime / 1000000);
     }
 }
