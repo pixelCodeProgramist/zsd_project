@@ -1,5 +1,7 @@
-package program;
+package program.CountingSorter;
 
+
+import program.Sorter;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;

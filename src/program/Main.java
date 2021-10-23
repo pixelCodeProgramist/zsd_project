@@ -1,5 +1,7 @@
 package program;
 
+import program.BucketSorter.BucketSorter;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
