@@ -7,6 +7,7 @@ public class Bucket {
     private List<Integer> list;
     private double rangeFrom;
     private double rangeTo;
+    
 
     public Bucket(double rangeFrom, double rangeTo) {
         this.list = new ArrayList<>();
