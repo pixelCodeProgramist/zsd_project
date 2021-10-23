@@ -1,4 +1,4 @@
-package program;
+package program.Sorters;
 
 public interface Sorter {
     void sort();

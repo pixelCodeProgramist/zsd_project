@@ -1,7 +1,7 @@
-package program.BucketSorter.InsertionSorter;
+package program.Sorters.BucketSorter.InsertionSorter;
 
-import program.BucketSorter.Bucket;
-import program.Sorter;
+import program.Sorters.BucketSorter.Bucket;
+import program.Sorters.Sorter;
 
 import java.util.List;
 

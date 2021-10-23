@@ -1,6 +1,6 @@
-package program.HeapSorter;
+package program.Sorters.HeapSorter;
 
-import program.Sorter;
+import program.Sorters.Sorter;
 
 import java.util.ArrayList;
 import java.util.List;

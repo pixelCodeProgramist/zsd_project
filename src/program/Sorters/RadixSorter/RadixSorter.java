@@ -1,4 +1,6 @@
-package program;
+package program.Sorters.RadixSorter;
+
+import program.Sorters.Sorter;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package program.BucketSorter;
+package program.Sorters.BucketSorter;
 
 import java.util.ArrayList;
 import java.util.List;
