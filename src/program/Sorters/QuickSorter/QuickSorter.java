@@ -21,7 +21,7 @@ public class QuickSorter implements Sorter {
     public void quickSort(int low, int high) {
         if (low < high) {
             int pi = partition(low, high);
-            if (comments.equals(Comments.withComments))
+            if (comments.equals(Comments.WITH_COMMENTS))
                 steps.add(new ArrayList<>(list));
             quickSort(low, pi - 1);
             quickSort(pi + 1, high);
@@ -48,20 +48,14 @@ public class QuickSorter implements Sorter {
     @Override
     public void sort(Comments comments) {
         this.comments = comments;
-        System.out.println("QUICKSORTER");
-        if (comments.equals(Comments.withComments))
-            System.out.println("unsorted list: " + list);
-        long startTime = System.nanoTime();
+        long startTime = System.currentTimeMillis();
         quickSort(0, list.size() - 1);
-        long elapsedTime = System.nanoTime() - startTime;
-        if (comments.equals(Comments.withComments)) {
+        long elapsedTime = System.currentTimeMillis() - startTime;
+        if (comments.equals(Comments.WITH_COMMENTS)) {
             for (int i = 1; i <= steps.size(); i++) {
-                System.out.println("ITERACJA " + i + ": " + steps.get(i - 1));
+                System.out.println("Iteracja " + i + ": " + steps.get(i - 1));
             }
-            System.out.println("sorted list: " + list);
         }
-        System.out.println("Total execution time in milis: "
-                + elapsedTime / 1000000);
-
+        System.out.println("Czas wykonania w milisekundach: " + elapsedTime);
     }
 }

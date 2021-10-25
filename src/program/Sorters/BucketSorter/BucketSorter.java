@@ -68,23 +68,17 @@ public class BucketSorter implements Sorter {
 
     @Override
     public void sort(Comments comments) {
-        System.out.println("BUCKET SORTER");
-        if (comments.equals(Comments.withComments))
-            System.out.println("unsorted list: " + list);
-        long startTime = System.nanoTime();
+        long startTime = System.currentTimeMillis();
         fillBuckets();
         sortInBucket(comments);
-        if (comments.equals(Comments.withComments))
+        if (comments.equals(Comments.WITH_COMMENTS))
             System.out.println(buckets);
         list.clear();
         for (Bucket b : buckets) {
             if (b.size() == 0) continue;
             for (int i : b.getList()) list.add(i);
         }
-        long elapsedTime = System.nanoTime() - startTime;
-        if (comments.equals(Comments.withComments))
-            System.out.println("sorted list: " + list);
-        System.out.println("Total execution time in milis: "
-                + elapsedTime / 1000000);
+        long elapsedTime = System.currentTimeMillis() - startTime;
+        System.out.println("Czas wynokania w milisekundach: " + elapsedTime);
     }
 }

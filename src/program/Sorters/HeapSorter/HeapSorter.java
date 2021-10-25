@@ -19,30 +19,21 @@ public class HeapSorter implements Sorter {
     @Override
     public void sort(Comments comments) {
         this.comments = comments;
-        System.out.println("HEAP SORT");
-        if (comments.equals(Comments.withComments))
-            System.out.println("unsorted list: " + list);
-        long startTime = System.nanoTime();
+        long startTime = System.currentTimeMillis();
         int n = list.size();
-        for (int i = n / 2 - 1; i >= 0; i--) {
+        for (int i = n / 2 - 1; i >= 0; i--)
             validateMaxHeap(n, i);
-        }
         for (int i = n - 1; i > 0; i--) {
             swap(0, i);
             --n;
             validateMaxHeap(n, 0);
         }
-        long elapsedTime = System.nanoTime() - startTime;
-        if (comments.equals(Comments.withComments))
+        long elapsedTime = System.currentTimeMillis() - startTime;
+        if (comments.equals(Comments.WITH_COMMENTS))
             for (int i = 0; i < historyChangeList.size(); i++) {
-                System.out.println("ITERACJA " + (i + 1) + ": " + historyChangeList.get(i));
+                System.out.println("Iteracja " + (i + 1) + ": " + historyChangeList.get(i));
             }
-        if (comments.equals(Comments.withComments))
-            System.out.println("sorted list: " + list);
-        System.out.println("Total execution time in milis: "
-                + elapsedTime / 1000000);
-
-
+        System.out.println("Czas wykonania w milisekundach: " + elapsedTime);
     }
 
     private void validateMaxHeap(int heapSize, int parentIndex) {
@@ -58,17 +49,15 @@ public class HeapSorter implements Sorter {
         }
         if (maxIndex != parentIndex) {
             swap(maxIndex, parentIndex);
-            if (comments.equals(Comments.withComments))
+            if (comments.equals(Comments.WITH_COMMENTS))
                 historyChangeList.add(new ArrayList<>(list));
             validateMaxHeap(heapSize, maxIndex);
         }
-
     }
 
     private void swap(int index1, int index2) {
         int temp = list.get(index1);
         list.set(index1, list.get(index2));
         list.set(index2, temp);
-
     }
 }

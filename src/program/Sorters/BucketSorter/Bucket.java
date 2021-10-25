@@ -29,10 +29,10 @@ public class Bucket {
 
     @Override
     public String toString() {
-        return "Bucket{" +
-                "from=" + rangeFrom + ", " +
-                "to=" + rangeTo + ", " +
-                "list=" + list +
+        return "Kubełek {" +
+                "od=" + rangeFrom + ", " +
+                "do=" + rangeTo + ", " +
+                "lista=" + list +
                 '}';
     }
 }

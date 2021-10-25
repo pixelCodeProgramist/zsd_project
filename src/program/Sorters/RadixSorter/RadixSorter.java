@@ -1,6 +1,5 @@
 package program.Sorters.RadixSorter;
 
-import program.Main;
 import program.Sorters.Comments;
 import program.Sorters.Sorter;
 
@@ -33,9 +32,7 @@ public class RadixSorter implements Sorter {
         if (negative.size() > 0 && positive.size() > 0) sortPositiveAndNegativeNumbers(max, min, tempArray, comments);
         else if (positive.size() == 0) sortNegativeNumbers(min, tempArray, comments);
         else sortPositiveNumbers(max, tempArray, comments);
-        System.out.println("Sort time = " + (System.currentTimeMillis() - time) + " ms");
-        if (comments.equals(Comments.withComments))
-            System.out.println(array);
+        System.out.println("Czas sortowania = " + (System.currentTimeMillis() - time) + " ms");
     }
 
     private void sortPositiveAndNegativeNumbers(int max, int min, List<Integer> tempArray, Comments comments) {
@@ -43,11 +40,11 @@ public class RadixSorter implements Sorter {
         int i = 0;
         for (int power = 1; max / power > 0; power *= 10) {
             countingPositiveNumberSort(positive, tempArray, power);
-            if (comments.equals(Comments.withComments))
-                System.out.println("Iteration " + i + " of radix sort for positive array " + positive);
+            if (comments.equals(Comments.WITH_COMMENTS))
+                System.out.println("Iteracja " + i + " dla listy z dodatnimi liczbami " + positive);
             countingNegativeNumberSort(negative, tempArray, power);
-            if (comments.equals(Comments.withComments))
-                System.out.println("Iteration " + i++ + " of radix sort for negative array " + negative);
+            if (comments.equals(Comments.WITH_COMMENTS))
+                System.out.println("Iteracja " + i++ + " dla listy z ujemnymi liczbami " + negative);
         }
         array.clear();
         array.addAll(negative);
@@ -58,8 +55,8 @@ public class RadixSorter implements Sorter {
         int i = 0;
         for (int power = 1; min / power > 0; power *= 10) {
             countingNegativeNumberSort(negative, tempArray, power);
-            if (comments.equals(Comments.withComments))
-                System.out.println("Iteration " + i + " of radix sort for negative array " + negative);
+            if (comments.equals(Comments.WITH_COMMENTS))
+                System.out.println("Iteracja " + i + ": " + negative);
         }
         array.clear();
         array.addAll(negative);
@@ -69,8 +66,8 @@ public class RadixSorter implements Sorter {
         int i = 0;
         for (int power = 1; max / power > 0; power *= 10) {
             countingPositiveNumberSort(positive, tempArray, power);
-            if (comments.equals(Comments.withComments))
-                System.out.println("Iteration " + i++ + " of radix sort for positive array " + positive);
+            if (comments.equals(Comments.WITH_COMMENTS))
+                System.out.println("Iteracja " + i++ + ": " + positive);
         }
         array.clear();
         array.addAll(positive);

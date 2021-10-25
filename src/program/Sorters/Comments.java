@@ -1,5 +1,5 @@
 package program.Sorters;
 
 public enum Comments {
-    withComments, withoutComments;
+    WITH_COMMENTS, WITHOUT_COMMENTS;
 }

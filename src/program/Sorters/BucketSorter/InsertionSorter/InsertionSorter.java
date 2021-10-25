@@ -21,8 +21,8 @@ public class InsertionSorter implements Sorter {
         int n = bucketNumbersList.size();
         int current;
         int otherIndex;
-        if (comments.equals(Comments.withComments)) {
-            System.out.println("Before sort bucket " + bucket);
+        if (comments.equals(Comments.WITH_COMMENTS)) {
+            System.out.println("Kubełek przed sortowaniem " + bucket);
             System.out.println("INSERTION SORT");
         }
         for (int i = 1; i < n; i++) {
@@ -33,8 +33,8 @@ public class InsertionSorter implements Sorter {
                 otherIndex--;
             }
             bucketNumbersList.set(otherIndex, current);
-            if (comments.equals(Comments.withComments))
-                System.out.println("iteration: " + i + ":  list: " + bucketNumbersList);
+            if (comments.equals(Comments.WITH_COMMENTS))
+                System.out.println("Iteracja: " + i + ":  lista: " + bucketNumbersList);
         }
     }
 }

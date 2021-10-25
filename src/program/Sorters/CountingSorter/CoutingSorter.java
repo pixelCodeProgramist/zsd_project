@@ -54,31 +54,24 @@ public class CoutingSorter implements Sorter {
 
     @Override
     public void sort(Comments comments) {
-        long startTime = System.nanoTime();
+        long startTime = System.currentTimeMillis();
 
         this.findMinAndMaxNumber();
         this.fillMapNumberOfNumbers();
         this.updateMapNumberOfNumbers();
         this.buildSortedList();
 
-        long elapsedTime = System.nanoTime() - startTime;
+        long elapsedTime = System.currentTimeMillis() - startTime;
 
-        System.out.println("COUNTING SORT");
-        if (comments.equals(Comments.withComments))
-            System.out.println("unsorted list: " + unsortedList);
-        if (comments.equals(Comments.withComments)) {
-            System.out.println("minimal element: " + min + " maximal element: " + max);
-            System.out.println("number = numberOfPerformance: " +
+        if (comments.equals(Comments.WITH_COMMENTS)) {
+            System.out.println("Miniamlny element: " + min + " maksymalny element: " + max);
+            System.out.println("liczba = liczba jej wystąpień: " +
                     numberOfNumbers.entrySet().stream()
                             .map(e -> e.getKey() + " = " + e.getValue())
                             .collect(Collectors.toList())
             );
         }
-        if (comments.equals(Comments.withComments))
-            System.out.println("Sorted list: " + list);
 
-        System.out.println("Total execution time in milis: "
-                + elapsedTime / 1000000);
-
+        System.out.println("Czas wykonania w milisekundach: " + elapsedTime);
     }
 }
