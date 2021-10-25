@@ -50,9 +50,14 @@ public class Main {
         int min = scan.nextInt();
         System.out.println("Określ maksymalną wartość listy:");
         int max = scan.nextInt();
+        while (max<=min){
+            System.out.println("Maksymalna wartość musi być większa od minimalnej:");
+            max = scan.nextInt();
+        }
         System.out.println("Określ rozmiar listy:");
         int size = scan.nextInt();
-        if (size < 2) {
+
+        while (size < 2) {
             System.out.println("Za mała lista proszę podać większą:");
             size = scan.nextInt();
         }
