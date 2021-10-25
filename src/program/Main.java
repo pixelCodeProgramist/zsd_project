@@ -4,6 +4,7 @@ import program.Sorters.BucketSorter.BucketSorter;
 import program.Sorters.Comments;
 import program.Sorters.CountingSorter.CoutingSorter;
 import program.Sorters.HeapSorter.HeapSorter;
+import program.Sorters.QuickSorter.QuickSorter;
 import program.Sorters.RadixSorter.RadixSorter;
 import program.Sorters.Sorter;
 
@@ -25,16 +26,19 @@ public class Main {
         switch (number) {
             case 1:
                 cSorter = new HeapSorter(integerList);
-                return;
+                break;
             case 2:
                 cSorter = new RadixSorter(integerList);
-                return;
+                break;
             case 3:
                 cSorter = new BucketSorter(integerList);
-                return;
+                break;
             case 4:
                 cSorter = new CoutingSorter(integerList);
-                return;
+                break;
+            case 5:
+                cSorter = new QuickSorter(integerList);
+                break;
         }
 
     }
@@ -53,9 +57,10 @@ public class Main {
             size = scan.nextInt();
         }
         List<Integer> integerListOriginal = randomList(min, max, size);
+
         while (true) {
             List<Integer> integerList = new ArrayList<>(integerListOriginal);
-            System.out.println("Wybierz rodzaj sortowania:\n1-Heap Sort\n2-Radix Sort\n3-Bucket Sort\n4-Counting Sort\n0-Zakończenie programu");
+            System.out.println("Wybierz rodzaj sortowania:\n1-Heap Sort\n2-Radix Sort\n3-Bucket Sort\n4-Counting Sort\n5-Quick Sort\n0-Zakończenie programu");
             int type = scan.nextInt();
             if (type == 0)
                 return;

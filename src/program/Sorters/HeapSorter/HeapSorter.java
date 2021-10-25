@@ -9,6 +9,7 @@ import java.util.List;
 public class HeapSorter implements Sorter {
     private List<Integer> list;
     private List<List<Integer>> historyChangeList;
+    private Comments comments;
 
     public HeapSorter(List<Integer> list) {
         this.list = list;
@@ -17,6 +18,7 @@ public class HeapSorter implements Sorter {
 
     @Override
     public void sort(Comments comments) {
+        this.comments = comments;
         System.out.println("HEAP SORT");
         if (comments.equals(Comments.withComments))
             System.out.println("unsorted list: " + list);
@@ -56,7 +58,8 @@ public class HeapSorter implements Sorter {
         }
         if (maxIndex != parentIndex) {
             swap(maxIndex, parentIndex);
-            historyChangeList.add(new ArrayList<>(list));
+            if (comments.equals(Comments.withComments))
+                historyChangeList.add(new ArrayList<>(list));
             validateMaxHeap(heapSize, maxIndex);
         }
 
